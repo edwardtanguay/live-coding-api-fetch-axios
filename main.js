@@ -4,25 +4,27 @@ import axios from 'axios';
 const url = 'https://raw.githubusercontent.com/graphql-compose/graphql-compose-examples/master/examples/northwind/data/json/employees.json';
 const appElem = document.querySelector('#app');
 
-appElem.innerHTML = 'Loading...';
+const title = '<h1>Employees</h1>';
+appElem.innerHTML = title + '<div>Loading...</div>';
 
-(async () => {
-	
-	// fetch
-	// const response = await fetch(url);
-	// const employees = await response.json();
+setTimeout(() => {
+	(async () => {
 
-	// axios
-	const response = await axios.get(url);
-	const employees = response.data;
+		// fetch
+		// const response = await fetch(url);
+		// const employees = await response.json();
 
-	appElem.innerHTML = `
-  <h1>Employees</h1>
+		// axios
+		const response = await axios.get(url);
+		const employees = response.data;
+
+		appElem.innerHTML = title + `
   <ul>
       ${employees.map(employee => {
-		  return `<li>${employee.firstName} ${employee.lastName}</li>`;
-	  }).join('')} 
+			return `<li>${employee.firstName} ${employee.lastName}</li>`;
+		}).join('')} 
   </ul>
 `;
-})();
+	})();
+}, 2000);
 
