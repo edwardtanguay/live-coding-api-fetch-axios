@@ -2,6 +2,9 @@ import './style.scss'
 import axios from 'axios';
 
 const url = 'https://raw.githubusercontent.com/graphql-compose/graphql-compose-examples/master/examples/northwind/data/json/employees.json';
+const appElem = document.querySelector('#app');
+
+appElem.innerHTML = 'Loading...';
 
 (async () => {
 	
@@ -13,7 +16,7 @@ const url = 'https://raw.githubusercontent.com/graphql-compose/graphql-compose-e
 	const response = await axios.get(url);
 	const employees = response.data;
 
-	document.querySelector('#app').innerHTML = `
+	appElem.innerHTML = `
   <h1>Employees</h1>
   <ul>
       ${employees.map(employee => {
